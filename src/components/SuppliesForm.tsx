@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Button, Form } from "react-bootstrap";
@@ -25,7 +25,7 @@ export function SuppliesForm() {
   const [data, setData] = useState(null);
 
   // Función para manejar el envío del formulario
-  const onSubmit = async (formData: FormValues) => {
+  const handleAddSupply = async (formData: FormValues) => {
     console.log(formData);
 
     try {
@@ -36,11 +36,11 @@ export function SuppliesForm() {
       console.error(error);
     }
     // Resetear el formulario después del envío
-    //reset();
+    reset();
   };
 
   return (
-    <Form id="suppliesForm" onSubmit={handleSubmit(onSubmit)}>
+    <Form id="suppliesForm" onSubmit={handleSubmit(handleAddSupply)}>
       {/* NOMBRE */}
       <Form.Group controlId="suppliesForm.name">
         <Form.Label>Nombre</Form.Label>
