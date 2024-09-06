@@ -1,46 +1,64 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { Button, Form } from "react-bootstrap";
+import { useEffect } from "react";
 
 // Definir el tipo de datos del formulario
-type FormValues = {
+export type SupplyFormValues = {
   name: string;
   quantity: number;
   unit: string;
-  stock: number;
-  price: number;
-  provider: string;
   category: string;
+  price: number;
+  supplier: string;
 };
 
-export function SuppliesForm() {
+interface SupplyFormProps {
+  onSubmit: (formData: SupplyFormValues) => void;
+  initialData?: SupplyFormValues; // Datos iniciales opcionales para edición
+}
+
+const unitOptions = [
+  "grams",
+  "mililiters",
+  "centimeters",
+  "piece",
+  "pound",
+  "ounce",
+];
+
+export function SuppliesForm({ onSubmit, initialData }: SupplyFormProps) {
   // Inicializar react-hook-form
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormValues>();
-  const [data, setData] = useState(null);
+  } = useForm<SupplyFormValues>({
+    defaultValues: initialData || {
+      name: "",
+      quantity: 0,
+      unit: "grams",
+      category: "grams",
+      price: 0,
+      supplier: "grams",
+    },
+  });
+
+  // Si hay datos iniciales, restablecer los valores del formulario
+  useEffect(() => {
+    if (initialData) {
+      reset(initialData);
+    }
+  }, [initialData, reset]);
 
   // Función para manejar el envío del formulario
-  const handleAddSupply = async (formData: FormValues) => {
-    console.log(formData);
-
-    try {
-      const response = await axios.get("http://localhost:8080/api/supplies");
-      setData(response.data);
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-    // Resetear el formulario después del envío
+  const handleFormSubmit = (formData: SupplyFormValues) => {
+    onSubmit(formData);
     reset();
   };
 
   return (
-    <Form id="suppliesForm" onSubmit={handleSubmit(handleAddSupply)}>
+    <Form id="suppliesForm" onSubmit={handleSubmit(handleFormSubmit)}>
       {/* NOMBRE */}
       <Form.Group controlId="suppliesForm.name">
         <Form.Label>Nombre</Form.Label>
@@ -50,13 +68,18 @@ export function SuppliesForm() {
         />
         {errors.name && <p>{errors.name.message}</p>}
       </Form.Group>
+
       {/* CANTIDAD */}
       <Form.Group controlId="suppliesForm.quantity">
         <Form.Label>Cantidad</Form.Label>
         <Form.Control
-          type="text"
-          {...register("quantity", { required: "Ingresa un numero" })}
+          type="number"
+          {...register("quantity", {
+            required: "Ingresa un numero",
+            valueAsNumber: true,
+          })}
         />
+
         {errors.quantity && <p>{errors.quantity.message}</p>}
       </Form.Group>
 
@@ -64,63 +87,56 @@ export function SuppliesForm() {
       <Form.Group controlId="suppliesForm.unit">
         <Form.Label>Unidad de medida</Form.Label>
         <Form.Select
-          defaultValue="Gramos"
           {...register("unit", {
-            required: "Asigna una categoria, luego la puedes cambiar",
+            required: "Asigna una unidad de medida",
           })}
         >
-          <option value={"grams"}>Gramos</option>
-          <option value={"mililiters"}>Mililitros</option>
-          <option value={"centimeters"}>Centimetros</option>
-          <option value={"piece"}>Unidades</option>
-          <option value={"pound"}>Libras</option>
-          <option value={"ounce"}>Onzas</option>
+          {unitOptions.map((option) => (
+            <option key={option} value={option}>
+              {option.charAt(0).toUpperCase() + option.slice(1)}
+            </option>
+          ))}
         </Form.Select>
         {errors.unit && <p>{errors.unit.message}</p>}
       </Form.Group>
 
-      {/* STOCK */}
-      <Form.Group controlId="suppliesForm.stock">
-        <Form.Label>Stock</Form.Label>
-        <Form.Control
-          type="text"
-          {...register("stock", {
-            required: "Ingresa que cantidad tenes actualmente",
-          })}
-        />
-        {errors.stock && <p>{errors.stock.message}</p>}
-      </Form.Group>
-      {/* PRICE */}
+      {/* PRECIO */}
       <Form.Group controlId="suppliesForm.price">
         <Form.Label>Precio</Form.Label>
-        <Form.Control
-          type="text"
+        {/* <Form.Control
+          type="number"
           {...register("price", { required: "Ingresa el precio" })}
+        /> */}
+
+        <Form.Control
+          type="number"
+          {...register("price", {
+            required: "Ingresa el precio",
+            valueAsNumber: true, // Convierte el valor a número
+          })}
         />
         {errors.price && <p>{errors.price.message}</p>}
       </Form.Group>
 
-      {/* PROVIDER */}
-
-      <Form.Group controlId="suppliesForm.provider">
+      {/* PROVEEDOR */}
+      <Form.Group controlId="suppliesForm.supplier">
         <Form.Label>Proveedor</Form.Label>
-        <Form.Select defaultValue="Gramos" {...register("provider")}>
+        <Form.Select {...register("supplier")}>
           <option value={"grams"}>Gramos</option>
           <option value={"mililiters"}>Mililitros</option>
           <option value={"centimeters"}>Centimetros</option>
           <option value={"pound"}>Libras</option>
           <option value={"ounce"}>Onzas</option>
         </Form.Select>
-        {errors.provider && <p>{errors.provider.message}</p>}
+        {errors.supplier && <p>{errors.supplier.message}</p>}
       </Form.Group>
 
-      {/* CATEGORY */}
+      {/* CATEGORIA */}
       <Form.Group controlId="suppliesForm.category">
-        <Form.Label>Categoria</Form.Label>
+        <Form.Label>Categoría</Form.Label>
         <Form.Select
-          defaultValue="Gramos"
           {...register("category", {
-            required: "Asigna una categoria, luego la puedes cambiar",
+            required: "Asigna una categoría",
           })}
         >
           <option value={"grams"}>Gramos</option>
@@ -133,7 +149,7 @@ export function SuppliesForm() {
       </Form.Group>
 
       <Button variant="success" type="submit">
-        Guardar
+        {initialData ? "Editar Insumo" : "Guardar Insumo"}
       </Button>
       <Button variant="danger" type="button" onClick={() => reset()}>
         Cancelar

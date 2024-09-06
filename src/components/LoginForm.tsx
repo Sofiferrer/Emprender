@@ -1,38 +1,32 @@
 import { useForm } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
-import { useAppDispatch } from "../hooks/storeHook";
-import { login } from "../redux/auth/authSlice";
-import { useNavigate } from "react-router-dom";
 
-// Definir el tipo de datos del formulario
-type FormValues = {
+export type LoginFormValues = {
   email: string;
   password: string;
 };
 
-export function LoginForm() {
+interface LoginFormProps {
+  onSubmit: (formData: LoginFormValues) => void;
+}
+
+export function LoginForm({ onSubmit }: LoginFormProps) {
   // Inicializar react-hook-form
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormValues>();
-
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  } = useForm<LoginFormValues>();
 
   // Función para manejar el envío del formulario
-  const handleLogin = async (formData: FormValues) => {
-    console.log(formData);
-    const { email, password } = formData;
-    dispatch(login({ email, password }));
-    navigate("/supplies");
+  const handleFormSubmit = (formData: LoginFormValues) => {
+    onSubmit(formData);
     reset();
   };
 
   return (
-    <Form id="loginForm" onSubmit={handleSubmit(handleLogin)}>
+    <Form id="loginForm" onSubmit={handleSubmit(handleFormSubmit)}>
       {/* EMAIL */}
       <Form.Group controlId="loginForm.email">
         <Form.Label>Email</Form.Label>

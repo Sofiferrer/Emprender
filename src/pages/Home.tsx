@@ -1,15 +1,8 @@
-import { LoginForm } from "../components";
-import { RegisterForm } from "../components";
-
-interface Props {}
-
-function Home(props: Props) {
-  const {} = props;
-
+function Home() {
   return (
     <>
       <div className="w-50 m-auto">
-        <RegisterForm />
+        <h1>HOME</h1>
       </div>
     </>
   );

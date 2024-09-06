@@ -1,4 +1,4 @@
-import { LogoutBtn, SuppliesForm } from "../components";
+import { Outlet } from "react-router-dom";
 
 interface Props {}
 
@@ -8,8 +8,7 @@ function Supplies(props: Props) {
   return (
     <>
       <div className="w-50 m-auto">
-        <LogoutBtn />
-        <SuppliesForm />
+        <Outlet />
       </div>
     </>
   );

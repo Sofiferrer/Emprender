@@ -1,11 +1,15 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import authReducer from "../redux/auth/authSlice"; // Importa el reducer
+import supplyReducer from "../redux/supplies/suppliesSlice";
+import supplierReducer from "../redux/suppliers/suppliersSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 
 // Combinar los reductores
 const rootReducer = combineReducers({
   auth: authReducer,
+  supply: supplyReducer,
+  supplier: supplierReducer,
 });
 
 // Configuración de persistencia

@@ -3,18 +3,18 @@ import {
   signInWithEmailAndPassword,
   signOut,
   createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
 } from "firebase/auth";
-import { User } from "../../models/User";
 import { auth, db } from "../../firebase.config";
 import { doc, setDoc } from "firebase/firestore";
+import { User } from "../../types/User";
 
 export interface AuthState {
   loading: boolean;
   user: User | null;
   error: string | null;
 }
+
+//TEST chopotolina@gmail.com  ===> hola123456
 
 // Función para iniciar sesión
 export const login = createAsyncThunk<
@@ -35,8 +35,6 @@ export const login = createAsyncThunk<
       email: user.email,
       // Agrega otros campos necesarios
     };
-
-    console.log(userData);
 
     return userData;
   } catch (error: any) {

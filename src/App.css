@@ -4,3 +4,13 @@
   box-sizing: border-box;
   background-color: rgb(59, 58, 58);
 }
+
+.class-colors {
+  background-color: #13235e;
+  background-color: #2b5f56;
+  background-color: #4c8479;
+  background-color: #95e0b4;
+  background-color: #bed2d0;
+  background-color: #ffde59;
+  background-color: #edb232;
+}
