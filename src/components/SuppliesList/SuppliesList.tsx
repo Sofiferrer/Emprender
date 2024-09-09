@@ -1,16 +1,16 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/storeHook";
-import { getAll } from "../redux/supplies/suppliesActions";
+import { useAppDispatch, useAppSelector } from "../../hooks/storeHook";
+import { getAll } from "../../redux/supplies/suppliesActions";
 import { Link } from "react-router-dom";
 import {
   selectError,
   selectLoading,
   selectSupplies,
-} from "../redux/supplies/suppliesSelectors";
+} from "../../redux/supplies/suppliesSelectors";
 
 interface Props {}
 
-function SuppliesList(props: Props) {
+export function SuppliesList(props: Props) {
   const {} = props;
   const dispatch = useAppDispatch();
 

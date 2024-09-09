@@ -1,7 +1,7 @@
 import { SuppliesForm } from "../components";
 import { useAppDispatch } from "../hooks/storeHook";
 import { create } from "../redux/supplies/suppliesActions";
-import { SupplyFormValues } from "../components/SuppliesForm";
+import { SupplyFormValues } from "../components/Forms/SuppliesForm";
 import { useNavigate } from "react-router-dom";
 
 interface Props {}

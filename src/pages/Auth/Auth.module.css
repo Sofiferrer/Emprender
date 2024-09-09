@@ -1,0 +1,65 @@
+.auth_container {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  /* padding impide que el margen superior o inferior colapse por el circle o <p> */
+  padding: 1px;
+  background: var(--horizontal-gradient);
+  display: flex;
+  flex-direction: column;
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 35px auto 0 auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+  background: var(--vertical-gradient);
+}
+
+.woman {
+  background: transparent;
+  width: 250px;
+}
+
+.form_container {
+  width: 70%;
+  margin: 30px auto;
+}
+
+.app_name {
+  /* font-family: Montserrat; */
+  text-align: center;
+  color: var(--secondary-color);
+  font-size: 4em;
+  line-height: 0.8;
+  margin-top: -35px;
+}
+
+.app_description {
+  text-align: center;
+  color: #fff;
+  font-size: 1.5em;
+  line-height: 1;
+}
+
+.google_container {
+  background-color: #fff;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 50px;
+}
+
+.toggle_span {
+  cursor: pointer;
+  color: var(--primary-color);
+  font-size: small;
+  text-decoration: underline;
+}

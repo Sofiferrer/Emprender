@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { LoginForm } from "../components";
 import { useAppDispatch } from "../hooks/storeHook";
-import { login } from "../redux/auth/authSlice";
-import { LoginFormValues } from "../components/LoginForm";
+import { login } from "../redux/auth/authActions";
+import { LoginFormValues } from "../components/Forms/LoginForm";
 
 interface Props {}
 

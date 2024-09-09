@@ -1,0 +1,43 @@
+.form {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input_custom {
+  background-color: transparent !important;
+  border: 2px solid #fff !important;
+  border-radius: 25px !important;
+  outline: none !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+  font-size: 16px !important;
+  transform-origin: center !important;
+}
+
+.input_custom:hover {
+  background-color: #f0f0f0 !important;
+  transform: scale(0.99) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+.input_custom:focus {
+  background-color: #f0f0f0 !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+  border-color: var(--secondary-color) !important;
+}
+
+.form-floating > label {
+  background-color: transparent;
+}
+
+label::after {
+  background-color: transparent !important;
+}
+
+.error_msg {
+  font-size: smaller;
+  color: var(--secondary-color);
+  margin-left: 30px;
+}

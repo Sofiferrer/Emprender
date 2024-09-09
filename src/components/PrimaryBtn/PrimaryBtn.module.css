@@ -1,0 +1,18 @@
+.custom_btn {
+  background: var(--vertical-gradient) !important;
+  border: 2px solid #fff !important;
+  border-radius: 25px !important;
+  padding: 10px !important;
+  outline: none !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+  font-size: 16px !important;
+  transform-origin: center !important;
+}
+
+.custom_btn:hover {
+  background-color: var(--primary-color) !important;
+  color: #ecf0f1 !important;
+  transform: scale(0.99) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+}

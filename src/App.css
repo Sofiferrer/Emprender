@@ -2,10 +2,28 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: rgb(59, 58, 58);
+  /* background-color: rgb(59, 58, 58); */
 }
 
-.class-colors {
+:root {
+  --primary-color: #2b5f56;
+  --secondary-color: #edb232;
+  --text-color: #13235e;
+  --horizontal-gradient: linear-gradient(90deg, #4c8479 0%, #2b5f56 100%);
+  --vertical-gradient: linear-gradient(
+    180deg,
+    rgb(149, 224, 180) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+[data-theme="dark"] {
+  --primary-color: #17332e;
+  --secondary-color: #4c8479;
+  --text-color: #ecf0f1;
+}
+
+/* .class-colors {
   background-color: #13235e;
   background-color: #2b5f56;
   background-color: #4c8479;
@@ -13,4 +31,5 @@
   background-color: #bed2d0;
   background-color: #ffde59;
   background-color: #edb232;
-}
+  background: linear-gradient(90deg, #4c8479 0%, #2b5f56 100%);
+} */

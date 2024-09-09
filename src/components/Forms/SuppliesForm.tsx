@@ -26,7 +26,7 @@ const unitOptions = [
   "ounce",
 ];
 
-export function SuppliesForm({ onSubmit, initialData }: SupplyFormProps) {
+function SuppliesForm({ onSubmit, initialData }: SupplyFormProps) {
   // Inicializar react-hook-form
   const {
     register,
