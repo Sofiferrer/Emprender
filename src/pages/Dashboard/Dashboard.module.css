@@ -1,0 +1,13 @@
+.dashboard_option {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  background-color: #bed2d0;
+  border: 4px solid var(--secondary-color);
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+}

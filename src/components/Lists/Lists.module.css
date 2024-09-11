@@ -1,0 +1,23 @@
+.list {
+  list-style: none;
+  width: 90%;
+  margin: auto;
+  padding: 0;
+}
+
+.list_item {
+  background-color: #fff;
+  border: 3px solid var(--secondary-color);
+  padding: 5px;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 5px 20px -3px rgba(51, 51, 51, 0.8);
+  -moz-box-shadow: 5px 5px 20px -3px rgba(51, 51, 51, 0.8);
+  box-shadow: 5px 5px 20px -3px rgba(51, 51, 51, 0.8);
+  margin: 10px;
+}
+
+.link {
+  width: 100%;
+  text-decoration: none;
+  color: black;
+}

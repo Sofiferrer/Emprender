@@ -5,21 +5,27 @@ import {
   Routes,
 } from "react-router-dom";
 import { connect } from "react-redux";
-import { useAppSelector } from "./hooks/storeHook";
+import { useAppDispatch, useAppSelector } from "./hooks/storeHook";
 import { RootState } from "./app/store";
 
 import Auth from "./pages/Auth/Auth";
-import Supplies from "./pages/Supplies";
-import Home from "./pages/Home";
-import CreateSupply from "./pages/CreateSupply";
-import UpdateSupply from "./pages/UpdateSupply";
+import Supplies from "./pages/Supplies/Supplies";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import CreateSupply from "./pages/Supplies/CreateSupply";
+import UpdateSupply from "./pages/Supplies/UpdateSupply";
 
-import SuppliesList from "./components/SuppliesList/SuppliesList";
 import "./App.css";
+import { SuppliesList } from "./components";
+import { useEffect } from "react";
+import { getAll } from "./redux/supplies/suppliesActions";
 
 const App = () => {
   const auth = useAppSelector((state: RootState) => state.auth.user);
-  console.log("AUTH", auth);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getAll());
+  }, []);
 
   const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({
     children,
@@ -43,12 +49,77 @@ const App = () => {
           path="/"
           element={
             <PrivateRoute>
-              <Home />
+              <Dashboard />
             </PrivateRoute>
           }
         />
         <Route
           path="/supplies"
+          element={
+            <PrivateRoute>
+              <Supplies />
+            </PrivateRoute>
+          }
+        >
+          <Route index element={<SuppliesList />} />
+          <Route path="create" element={<CreateSupply />} />
+          <Route path="update/:id" element={<UpdateSupply />} />
+          {/*<Route path=":id" element={<SupplyDetail />} />  Ruta para el detalle del suministro */}
+        </Route>
+        <Route
+          path="/suppliers"
+          element={
+            <PrivateRoute>
+              <Supplies />
+            </PrivateRoute>
+          }
+        >
+          <Route index element={<SuppliesList />} />
+          <Route path="create" element={<CreateSupply />} />
+          <Route path="update/:id" element={<UpdateSupply />} />
+          {/*<Route path=":id" element={<SupplyDetail />} />  Ruta para el detalle del suministro */}
+        </Route>
+        <Route
+          path="/recipes"
+          element={
+            <PrivateRoute>
+              <Supplies />
+            </PrivateRoute>
+          }
+        >
+          <Route index element={<SuppliesList />} />
+          <Route path="create" element={<CreateSupply />} />
+          <Route path="update/:id" element={<UpdateSupply />} />
+          {/*<Route path=":id" element={<SupplyDetail />} />  Ruta para el detalle del suministro */}
+        </Route>
+        <Route
+          path="/sales"
+          element={
+            <PrivateRoute>
+              <Supplies />
+            </PrivateRoute>
+          }
+        >
+          <Route index element={<SuppliesList />} />
+          <Route path="create" element={<CreateSupply />} />
+          <Route path="update/:id" element={<UpdateSupply />} />
+          {/*<Route path=":id" element={<SupplyDetail />} />  Ruta para el detalle del suministro */}
+        </Route>
+        <Route
+          path="/production"
+          element={
+            <PrivateRoute>
+              <Supplies />
+            </PrivateRoute>
+          }
+        >
+          <Route index element={<SuppliesList />} />
+          <Route path="create" element={<CreateSupply />} />
+          <Route path="update/:id" element={<UpdateSupply />} />
+          {/*<Route path=":id" element={<SupplyDetail />} />  Ruta para el detalle del suministro */}
+        </Route>
+        <Route
+          path="/purchases"
           element={
             <PrivateRoute>
               <Supplies />

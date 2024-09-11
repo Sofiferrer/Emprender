@@ -1,0 +1,23 @@
+.navbar_container {
+  background: var(--horizontal-gradient);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  height: 130px;
+}
+
+.title {
+  color: white;
+  font-size: xx-large;
+  line-height: 0.8;
+}
+
+.user_btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 100% !important;
+  border-color: transparent !important;
+  background-color: var(--secondary-color) !important;
+}

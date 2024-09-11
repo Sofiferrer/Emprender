@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Navbar } from "../components";
+import { Navbar } from "../../components";
 
 interface Props {}
 
@@ -8,10 +8,8 @@ function Supplies(props: Props) {
 
   return (
     <>
-      <div className="w-50 m-auto">
-        <Navbar />
-        <Outlet />
-      </div>
+      <Navbar />
+      <Outlet />
     </>
   );
 }

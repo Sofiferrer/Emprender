@@ -7,7 +7,7 @@ import {
   selectLoading,
   selectSupplies,
 } from "../../redux/supplies/suppliesSelectors";
-
+import styles from "./Lists.module.css";
 interface Props {}
 
 export function SuppliesList(props: Props) {
@@ -19,10 +19,9 @@ export function SuppliesList(props: Props) {
   const error = useAppSelector(selectError);
 
   useEffect(() => {
-    // Cargar insumos al montar el componente
     dispatch(getAll());
   }, [dispatch]);
-  // Mostrar mensaje de carga
+
   if (loading) {
     return <p>Cargando...</p>;
   }
@@ -34,19 +33,28 @@ export function SuppliesList(props: Props) {
 
   return (
     <div>
-      <h1>Lista de Insumos</h1>
       <Link to="create">Crear Nuevo Insumo</Link>
-      <ul>
+      <ul className={styles.list}>
         {supplies.length > 0 ? (
           supplies.map((supply) => (
-            <li key={supply.id}>
-              {supply.name} - {supply.quantity} {supply.unit}
-              {/* Link para editar */}
+            <li key={supply.id} className={styles.list_item}>
               <Link
+                className={styles.link}
                 to={`/supplies/update/${supply.id}`}
-                style={{ marginLeft: "10px" }}
               >
-                Editar
+                <p>{supply.name}</p>
+                <div className="d-flex justify-content-between">
+                  <span>
+                    STOCK: {supply.stock}-{supply.unit}
+                  </span>
+                  <div>
+                    <span>${supply.price} </span>
+                    <span>
+                      {" "}
+                      x{supply.quantity} {supply.unit}
+                    </span>
+                  </div>
+                </div>
               </Link>
             </li>
           ))

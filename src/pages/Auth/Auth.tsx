@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { LoginForm } from "../../components";
 import { useAppDispatch } from "../../hooks/storeHook";
+
 import { login, register } from "../../redux/auth/authActions";
+import { GoogleBtn, LoginForm } from "../../components";
 import { LoginFormValues } from "../../components/Forms/LoginForm";
 import RegisterForm, {
   RegisterFormValues,
@@ -11,7 +11,6 @@ import RegisterForm, {
 
 import Woman from "../../assets/images/woman.png";
 import styles from "./Auth.module.css";
-import GoogleBtn from "../../components/GoogleBtn/GoogleBtn";
 
 function Auth() {
   const [isLogin, setIsLogin] = useState(true);

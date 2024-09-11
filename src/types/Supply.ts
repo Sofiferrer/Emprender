@@ -1,11 +1,12 @@
 export interface Supply {
   id: string;
   name: string;
+  price: number;
   quantity: number;
   unit: string;
-  category: string;
-  price: number;
   supplier: string;
+  category: string;
+  stock: number;
 }
 
 export interface SupplyState {

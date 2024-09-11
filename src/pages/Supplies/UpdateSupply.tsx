@@ -1,10 +1,10 @@
-import { SuppliesForm } from "../components";
-import { useAppDispatch, useAppSelector } from "../hooks/storeHook";
+import { SuppliesForm } from "../../components";
+import { useAppDispatch, useAppSelector } from "../../hooks/storeHook";
 import { useParams } from "react-router-dom";
-import { SupplyFormValues } from "../components/Forms/SuppliesForm";
+import { SupplyFormValues } from "../../components/Forms/SuppliesForm";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { getById, update } from "../redux/supplies/suppliesActions";
+import { getById, update } from "../../redux/supplies/suppliesActions";
 
 function UpdateSupply() {
   const { id } = useParams<{ id: string }>();

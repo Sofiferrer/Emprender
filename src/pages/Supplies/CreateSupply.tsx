@@ -1,7 +1,7 @@
-import { SuppliesForm } from "../components";
-import { useAppDispatch } from "../hooks/storeHook";
-import { create } from "../redux/supplies/suppliesActions";
-import { SupplyFormValues } from "../components/Forms/SuppliesForm";
+import { SuppliesForm } from "../../components";
+import { useAppDispatch } from "../../hooks/storeHook";
+import { create } from "../../redux/supplies/suppliesActions";
+import { SupplyFormValues } from "../../components/Forms/SuppliesForm";
 import { useNavigate } from "react-router-dom";
 
 interface Props {}
@@ -12,18 +12,15 @@ function CreateSupply(props: Props) {
   const navigate = useNavigate();
 
   const handleCreateSupply = async (formData: SupplyFormValues) => {
-    const { name, quantity, unit, category, price, supplier } = formData;
+    const { name, price, quantity, unit, supplier, category, stock } = formData;
 
     try {
-      // Dispatch para crear el suministro
       await dispatch(
-        create({ name, quantity, unit, category, price, supplier })
+        create({ name, price, quantity, unit, supplier, category, stock })
       );
-
-      // Navegación si el suministro se crea con éxito
       navigate("/supplies");
     } catch (error) {
-      console.error("Error al crear el suministro:", error);
+      console.error("Error al crear el insumo:", error);
     }
   };
 

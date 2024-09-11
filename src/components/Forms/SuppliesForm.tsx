@@ -5,11 +5,12 @@ import { useEffect } from "react";
 // Definir el tipo de datos del formulario
 export type SupplyFormValues = {
   name: string;
+  price: number;
   quantity: number;
   unit: string;
-  category: string;
-  price: number;
   supplier: string;
+  category: string;
+  stock: number;
 };
 
 interface SupplyFormProps {
@@ -36,11 +37,12 @@ function SuppliesForm({ onSubmit, initialData }: SupplyFormProps) {
   } = useForm<SupplyFormValues>({
     defaultValues: initialData || {
       name: "",
+      price: 0,
       quantity: 0,
       unit: "grams",
-      category: "grams",
-      price: 0,
       supplier: "grams",
+      category: "grams",
+      stock: 0,
     },
   });
 
@@ -67,6 +69,20 @@ function SuppliesForm({ onSubmit, initialData }: SupplyFormProps) {
           {...register("name", { required: "Ingresa un nombre" })}
         />
         {errors.name && <p>{errors.name.message}</p>}
+      </Form.Group>
+
+      {/* PRECIO */}
+      <Form.Group controlId="suppliesForm.price">
+        <Form.Label>Precio</Form.Label>
+
+        <Form.Control
+          type="number"
+          {...register("price", {
+            required: "Ingresa el precio",
+            valueAsNumber: true, // Convierte el valor a número
+          })}
+        />
+        {errors.price && <p>{errors.price.message}</p>}
       </Form.Group>
 
       {/* CANTIDAD */}
@@ -100,24 +116,6 @@ function SuppliesForm({ onSubmit, initialData }: SupplyFormProps) {
         {errors.unit && <p>{errors.unit.message}</p>}
       </Form.Group>
 
-      {/* PRECIO */}
-      <Form.Group controlId="suppliesForm.price">
-        <Form.Label>Precio</Form.Label>
-        {/* <Form.Control
-          type="number"
-          {...register("price", { required: "Ingresa el precio" })}
-        /> */}
-
-        <Form.Control
-          type="number"
-          {...register("price", {
-            required: "Ingresa el precio",
-            valueAsNumber: true, // Convierte el valor a número
-          })}
-        />
-        {errors.price && <p>{errors.price.message}</p>}
-      </Form.Group>
-
       {/* PROVEEDOR */}
       <Form.Group controlId="suppliesForm.supplier">
         <Form.Label>Proveedor</Form.Label>
@@ -146,6 +144,20 @@ function SuppliesForm({ onSubmit, initialData }: SupplyFormProps) {
           <option value={"ounce"}>Onzas</option>
         </Form.Select>
         {errors.category && <p>{errors.category.message}</p>}
+      </Form.Group>
+
+      {/* STOCK */}
+      <Form.Group controlId="suppliesForm.stock">
+        <Form.Label>Stock</Form.Label>
+
+        <Form.Control
+          type="number"
+          {...register("stock", {
+            required: "Ingresa la cantidad que tienes",
+            valueAsNumber: true,
+          })}
+        />
+        {errors.stock && <p>{errors.stock.message}</p>}
       </Form.Group>
 
       <Button variant="success" type="submit">
